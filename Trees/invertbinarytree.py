@@ -1,0 +1,24 @@
+
+class TreeNode(object):
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+class Solution(object):
+    def invertTree(self, root):
+        """
+        :type root: TreeNode
+        :rtype: TreeNode
+        """
+        if root == None:
+            return None
+        # swap the two nodes.
+        temp = root.left
+        root.left = root.right
+        root.right = temp
+        #recursively swap the left and right nodes.
+        self.invertTree(root.left)
+        self.invertTree(root.right)
+        # return the root node.
+        return root
