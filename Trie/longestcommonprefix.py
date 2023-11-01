@@ -18,7 +18,7 @@ class Trie:
 
 class Solution:
      def longestCommonPrefix(self, strs: List[str]) -> str:
-         if not string:
+         if not strs:
              return ""
          trie = Trie()
          for word in strs:
@@ -32,8 +32,11 @@ class Solution:
               current = current.children[character]
          return result
 
+# Time complexity - o(N * M)
+# WHERE N is the number of words in strs and M is the average length of the word.
 
-
+# This is beacuase we know that to add word on Trie, it takes o(l) where l is the lenght of word.
+# and For N words, we do o(L) operations so, o(N* M) M being length of word
         
 # a = Trie()
 # strs = ["flower","flow","flight"]
