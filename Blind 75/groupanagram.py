@@ -56,6 +56,8 @@ def groupAnagrams(strs):
         #         dictionary[sorted_string] = [original_string]
         # return dictionary.values()
 
+        # The overall timecomplexity is:
+        # O(n * k log k) where n is the number of strings in strs and k is the average length of these strings.
 
         # using anothersolution.
         # idea here is : because problem said that there will only be 26 characters w ecreate a list contains 26 0s
@@ -78,6 +80,6 @@ def groupAnagrams(strs):
         print(dictionary.values())
         return dictionary.values()
 
-        #Time complexity - o(N * M) where N is the length of list and M is the length of each letter.
+        #Time complexity - o(N * M) where N is the length of list and M is the length of each word.
 strs = ["eat","tea","tan","ate","nat","bat"]
 print(groupAnagrams(strs))

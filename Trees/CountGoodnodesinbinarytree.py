@@ -34,7 +34,7 @@ class Solution:
             max_value = max(max_value, root.val)
             dfs(root.left, max_value)
             dfs(root.right, max_value)
-            return
+            return 
 
         
 

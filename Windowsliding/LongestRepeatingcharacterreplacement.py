@@ -38,7 +38,7 @@ class Solution(object):
             else:
                 # if not, it is not a valid windows.
                 # why use while loop here??
-                # remember , if we do not keep while loop here, then at this point, we get a new window right because we are decrementing the left pointer,
+                # remember , if we do not keep while loop here, then at this point, we get a new window right because we are incrementing the left pointer,
                 # so we also have to check if this new window is valid or not , before doing anything else, so we keep on checking if this new window is valid
                 # or not, if now, we increment count, if not, then only we increment the right pointer.
                 while ((right-left + 1) - self.most_repeated(hash_map) > k):

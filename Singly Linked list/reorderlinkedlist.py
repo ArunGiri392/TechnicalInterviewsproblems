@@ -99,3 +99,71 @@ class Solution(object):
 
 # Timecomplexity - o(N) because we are traversing the list
 # space complexity - o(1) No auxillary data structure is being used here.
+
+
+# Definition for singly-linked list.
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+class Solution:
+    def reorderList(self, head: Optional[ListNode]) -> None:
+        # Three steps
+        # 1) breaking linkedlist into two parts
+        # 2) reversing linkedlist
+        # 3) merging two linkedlist in zigzag
+
+        slow = head
+        fast = head
+
+        while fast != None and fast.next != None:
+            slow = slow.next
+            fast = fast.next.next
+        
+      
+        second_linked_list = slow.next
+        slow.next = None
+        first_linked_list = head
+        
+        reverse_second_list = self.reverselinkedlist(second_linked_list)
+
+        # now merging two linked list in zigzag
+
+        temp1 = first_linked_list
+        temp2 = reverse_second_list
+
+        dummy_node = ListNode(0)
+        temp3 = dummy_node
+
+        # it is guranteed that temp2 will always be shorter than the temp1 . so temp2 will have its NOne before the Temp1
+        while temp2 != None:
+            
+            temp3.next = temp1
+            temp1 = temp1.next
+            temp3 = temp3.next
+            
+            
+            temp3.next = temp2
+            temp2 = temp2.next
+            temp3 = temp3.next
+        # since temp2 is always shorter, so if any point, temp2 reaches None, there could still be
+        # some elements in the temp1, so we cannot miss it, so joining it here.
+        temp3.next = temp1
+
+        return dummy_node.next
+
+
+    def reverselinkedlist(self, second_linked_list):
+        current_node = second_linked_list
+        previous_node = None
+        while current_node != None:
+            temp = current_node.next
+            current_node.next = previous_node
+            previous_node = current_node
+            current_node = temp
+        return previous_node
+
+
+
+
