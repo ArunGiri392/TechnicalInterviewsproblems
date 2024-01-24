@@ -67,3 +67,33 @@ def removeNthFromEnd(self, head, n):
     # fist pointer is in the previous node of node to be delted.
         first_pointer.next = first_pointer.next.next
         return dummy_node.next
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
+        slow = head
+        fast = head
+        counter = 0
+        while counter != n:
+            fast = fast.next
+            counter += 1
+        
+       
+    
+        previous_node = None
+        while fast != None:
+            previous_node = slow
+            slow = slow.next
+            fast = fast.next
+        
+        if slow == head:
+            return head.next
+    
+        previous_node.next = slow.next
+        return head
+
+        

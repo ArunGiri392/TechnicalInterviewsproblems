@@ -33,7 +33,7 @@ def hascycle():
 # keeping two pointer - one pointer move fast and another move slow
 # slow - moves one Step , fast moves two step and there will be point that
 # fast will meet slow if there is a cycle and when they meet, you knwow it is cycle.
-        # using floys's algorithm - two pointers
+        # using floys's  algorithm- two pointers
 def hascycle():
     slow_pointer = head
     fast_pointer = head
