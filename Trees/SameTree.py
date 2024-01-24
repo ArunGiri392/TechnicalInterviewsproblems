@@ -64,3 +64,7 @@ class Solution:
             return left_side and right_side
         else:
             return False
+# Time complextiy - O(N) where N is the number of nodes in each tree.
+# Space complextiy - Height of the recrusion stack.
+# for balanced tree- o(logN) where N is the number of Nodes in tree.
+# for unbalanced tree - O(N) for example skewed tree.

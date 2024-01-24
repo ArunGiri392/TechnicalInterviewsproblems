@@ -62,3 +62,7 @@ def maxDepth(self, root):
        return myheight
 
 
+# Time comlexity -- Since the function traverses every node exactly once, the time complexity is O(N), where N is the number of nodes in the binary tree.
+# Space complexity -- The space complexity of a recursive algorithm like this is proportional to the height of the recursion tree. In the worst case (a completely unbalanced tree), the height of the recursion tree can be O(N), thus leading to a space complexity of O(N).
+
+# However, in the best case (a completely balanced tree), the height of the tree (and thus the depth of the recursion stack) would be O(log N), making the space complexity O(log N) where N is the number of Nodes.

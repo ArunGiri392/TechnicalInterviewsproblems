@@ -57,3 +57,46 @@ class Solution(object):
             temp.next = p
         return dummy.next
     
+
+
+
+# Definition for singly-linked list.
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+class Solution:
+    def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
+        if len(lists) == 0 or len(lists) == 1:
+            return None
+            
+        another_list = self.mergelist(lists[0], lists[1])
+        # print(another_list)
+        for i in range (2, len(lists)):
+            # print(lists[i])
+            another_list = self.mergelist(another_list, lists[i])
+            print(55)
+        print(another_list)
+        return another_list
+
+    def mergelist(self, firstlist, secondlist):
+        temp1 = firstlist
+        temp2 = secondlist
+        print(firstlist)
+        print(secondlist)
+        dummy_node = ListNode(0)
+        temp3 = dummy_node
+
+        while temp1 != None and temp2 != None:
+            if temp1.val < temp2.val:
+                temp3.next = temp1
+                temp1 = temp1.next
+                temp3 = temp3.next
+            else:
+                temp3.next = temp2
+                temp2 = temp2.next
+                temp3 = temp3.next
+        if temp1 == None:
+            temp3.next = temp2
+        temp3.next = temp1
+        return dummy_node.next
