@@ -47,7 +47,7 @@ class KthLargest:
 # If the heap size is already k, you pop the smallest element if the new element is larger and then push the new element onto the heap. Both of these operations take O(log k) time.
 # You perform the above operations for each element in the stream, so for n elements, the total time complexity is O(n * log k).
 
-# This is an efficient solution, especially when k is much smaller than n. Well done!
+# This is an efficient solution, especially when k is much smaller than n. 
 
 
 

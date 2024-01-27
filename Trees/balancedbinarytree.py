@@ -30,4 +30,21 @@ class Solution:
         return boolean
 
 
-        
+class Solution:
+    def isBalanced(self, root: Optional[TreeNode]) -> bool:
+
+        def dfs(root):
+            if root == None:
+                return (0, True)
+            
+            left_side_height, left_boolean = dfs(root.left)
+            right_side_height, right_boolean = dfs(root.right)
+
+            if (abs(left_side_height - right_side_height)) > 1:
+                return (1 + max(left_side_height, right_side_height), False and (left_boolean and right_boolean ))
+            else:
+                return (1 + max(left_side_height, right_side_height), True and (left_boolean and right_boolean))
+            
+            # return 1 + max(left_side, right_side)
+        height, boolean = dfs(root)
+        return boolean
