@@ -1,9 +1,4 @@
-class Solution(object):
-    def orangesRotting(self, grid):
-        """
-        :type grid: List[List[int]]
-        :rtype: int
-        """
+
 
     # what is the idea here?
     # a rotten orange will rot other oranges in i unit of time (lets say 1 minute).
@@ -22,54 +17,64 @@ class Solution(object):
 
     # Note.
     # because, we change the matrxi from 1 to 2, to keep track of rotten orange, we dont have to create hashset to keep track, which have already been rotten. matrxi itself helps us.
-    
-        
-        if len(grid) == 0:
-            return 0
-        rows = len(grid)
-        column = len(grid[0])
-        maximum_time = 0
-        time = 0
-        queue = []
-        #hash_set = set()
 
-        # now firstly i have to traverse through the 2d list and find out where are the 2's present
-        # and add their indices in the queue.
+class Solution:
+    def orangesRotting(self, grid: List[List[int]]) -> int:
 
-        for row in range(rows):
-            for col in range(column):
+
+        ROWS = len(grid)
+        COLS = len(grid[0])
+        Time = 0
+        queue = deque()
+        fresh = 0
+
+        for row in range(0, ROWS):
+            for col in range(0, COLS):
                 if grid[row][col] == 2:
-                    queue.append((row,col,time))
-                    #hash_set.add((row,col))
-        print(queue)
+                    queue.append((row, col))
+                elif grid[row][col] == 1:
+                    fresh += 1
 
-        while queue:
-            row, col,time = queue.pop(0)
-            print(row,col)
-            # up, down, left, right
-            maximum_time = max(time,maximum_time)
-            #print(maximum_time)
+        if fresh == 0:
+            return 0
 
-            neighbours = [(row - 1, col),(row + 1, col),(row , col - 1),(row , col + 1)]
-            for neighbour in neighbours:
-                nr, nc = neighbour
-                print(nr, nc)
-                if( nr >= 0 and nr < rows) and (nc >= 0 and nc < column) and grid[nr][nc] == 1:
-                    print("entered")
-                    queue.append((nr,nc,time + 1))
-                    grid[nr][nc] = 2
+
+
+        while fresh > 0 and queue:
+            for i in range( 0, len(queue)):
+                r, c = queue.popleft()
+                neighbours = [(r - 1, c), (r + 1, c), (r, c + 1), (r, c- 1)]
+                for neighbour in neighbours:
+                    nr, nc = neighbour
+                    if nr >= 0  and nc >= 0 and nr < ROWS and nc < COLS and grid[nr][nc] != 0 and grid[nr][nc] != 2:
+                        queue.append((nr, nc))
+                        grid[nr][nc] = 2
+                        fresh -= 1
+            Time += 1
+
           
+        
+        if fresh == 0:
+            return Time
+        return -1
 
         
-        for i in range(rows):
-            for j in range(column):
-                print(format(grid[i][j]))
-            print("next row")
-
-        for row in range(rows):
-            for col in range(column):
-                if grid[row][col] == 1:
-                    return -1
-        return  maximum_time
+        
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
+      
