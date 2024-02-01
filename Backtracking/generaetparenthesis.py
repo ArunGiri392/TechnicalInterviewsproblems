@@ -12,28 +12,24 @@ class Solution:
     
     def generateParenthesis(self, n: int) -> List[str]:
         result = []
-        stack = []
 
-        def backtrack(open, close, stack, n):
-
-            if open == n and  close == n:
+        def dfs(stack,opening, closing):
+            if len(stack) == 2*n:
                 result.append("".join(stack))
-                return 
-
-
-            # to add the opening brackets
-            if open < n:
+                return
+            
+            if opening < n:
                 stack.append("(")
-                backtrack(open + 1, close, stack, n)
-                stack.pop()
-
-            # to add the closing brackets
-            if close < n and close < open:
-                stack.append(")")
-                backtrack(open, close + 1, stack, n)
+                dfs(stack, opening + 1, closing)
                 stack.pop()
             
-        backtrack(0, 0, stack, n)
+
+            if closing < n and opening > closing:
+                stack.append(")")
+                dfs(stack, opening, closing + 1)
+                stack.pop()
+        
+        dfs([], 0, 0)
         return result
 
 

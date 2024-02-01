@@ -30,3 +30,32 @@ class Solution:
             else:
                 end = intervals[i][1]
         return count
+    
+
+class Solution:
+    def eraseOverlapIntervals(self, intervals: List[List[int]]) -> int:
+        count = 0
+        intervals = sorted(intervals, key=lambda x: x[0])
+
+        current_interval = intervals[0]
+        for i in range(1, len(intervals)):
+            if intervals[i][0] < current_interval[1]:
+                # thery are merging
+                count += 1
+                if current_interval[1] < intervals[i][1]:
+                    current_interval = current_interval
+                else:
+                    current_interval = intervals[i]
+            else:
+                current_interval = intervals[i]
+        return count
+
+
+
+   
+
+    # 1----2 2---3
+    #            i
+    # ci = 1--2
+
+    # c = 2

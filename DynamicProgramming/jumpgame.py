@@ -20,37 +20,7 @@
 
     
 
-#     maximum_reached = max(maximum_reached,nums[i] + i )
 
-#     if i > maximum_reached:
-#         return False
-#     does this make any difference???
-#     yes, lets consider this case, lets say,: 
-#      3  2 1 0 4 is my array.
-#      when i = 0, max value is 3.
-#       when i = 1, max value is 3.
-#        when i = 2, max value is 3.
-#          when i = 3, max value is 3.
-#         when i = 4, now,if we calcuate the max value before comparing then
-#         max value becomes , 4 + 4 ie 8, and 
-#          if i > maximum_reached:
-#         return False
-#         this condition becomes false, as max_reached is greater than i.
-#         but wait this should not have had happened right?
-#         this happened because we calculated before compareing, 
-#         if we had compare before then when i = 4, then max value would still become 3 and i would have become 4 and upon comapring ,the condition would become true and return false
-
-def canJump(self, nums: List[int]) -> bool:
-        maximum_reached = 0
-        for i in range(0 , len(nums)):
-            if i > maximum_reached:
-                return False
-
-            maximum_reached = max(maximum_reached,nums[i] + i )
-           #nums[i] + 1 because , nums[i] is its potential to jump and i is its current postiion.
-            
-            if maximum_reached >= len(nums) - 1:
-                return True 
        
         #  dynamic programming solution. o (N2 solution)
         # The idea here was: if i am at last poistion,can i reach to the last poisiton, well ofcourse yes,
@@ -75,3 +45,18 @@ def canJump(self, nums: List[int]) -> bool:
         #     else:
         #         dictionary [i] = False
         # return dictionary[0]
+
+class Solution:
+    def canJump(self, nums: List[int]) -> bool:
+        index = 0
+        maximum_reached = 0
+
+        while index <= maximum_reached:
+            if maximum_reached >= len(nums) - 1:
+                return True
+
+            maximum_reached = max(nums[index]+ index, maximum_reached)
+
+            
+            index += 1
+        return False
