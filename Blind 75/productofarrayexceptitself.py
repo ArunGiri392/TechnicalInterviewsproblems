@@ -44,49 +44,27 @@
 # and update that result in the list . do this for all, such that the list we had initially 
 # that contained the right side product gets converted to the final answer.
 
-def productExceptSelf(nums):
-        # idea here is  to calculate the product of right side of each element.
-        # similarly, we can calculate the product of left side of each element.
-        # once, we have the right side product of each element and same for left, we can use them to find the final answer.
-         
-        #function to find the right side product of each element in list.start from last side.
-        i = len(nums) - 2
-        right_side_multiplication_holder = [1]
-        previous_right_multiplication = 1
-        while i >= 0:
-            new_right_side_multiplication = previous_right_multiplication * nums[i+1]
-            right_side_multiplication_holder.append(new_right_side_multiplication)
-            previous_right_multiplication = new_right_side_multiplication
-            i = i -1
+class Solution:
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+        left_hand_multiplication = [1]
+        right_hand_multiplication = [1]
+        left_hand_value = 1
+        right_hand_value = 1
 
-        # here now , we calculate the left hand side product, and multiyply with right hand side product
-        # already in list, and update the value in the same list.
-        # because, there is no element in the left side of first element, have to handle cautiously.
-        
-        i = 0
-        j = len(nums)-1
-        left_side_product = 1
-        while i < len(nums):
-             if i == 0:
-                  final_product = 1 * right_side_multiplication_holder[j]
-                  right_side_multiplication_holder[j] = final_product
-             else:
-                  left_side_product = left_side_product * nums[i-1]
-                  final_product = left_side_product * right_side_multiplication_holder[j]
-                  right_side_multiplication_holder[j] = final_product
-             i += 1
-             j -= 1
-        # reverse a list
-        i = 0
-        j = len(right_side_multiplication_holder) -1
-        while i < j:
-             temp = right_side_multiplication_holder[i]
-             right_side_multiplication_holder[i] = right_side_multiplication_holder[j]
-             right_side_multiplication_holder[j]  = temp
-             i += 1
-             j -= 1
+        for i in range(1, len(nums)):
+            left_hand_value = left_hand_value * nums[i-1]
+            left_hand_multiplication.append(left_hand_value)
 
+        for i in range(len(nums)-2, -1, -1):
+            right_hand_value = right_hand_value * nums[i+1]
+            right_hand_multiplication.append(right_hand_value)
         
-        return right_side_multiplication_holder
+
+        result = []
+        for i in range(0, len(nums)):
+            result.append(left_hand_multiplication[i] * right_hand_multiplication[len(nums) -1 -i])
+
+        return result
+
 nums = [1,2,3,4]
 print(productExceptSelf(nums))
