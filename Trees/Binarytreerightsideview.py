@@ -4,6 +4,9 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
+
+
+
 class Solution:
     def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
         
@@ -30,3 +33,4 @@ class Solution:
             final_result.append(result.pop())
 
         return final_result
+    
