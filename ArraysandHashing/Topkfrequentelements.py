@@ -63,3 +63,58 @@ class Solution(object):
                     
 # Time complexity - o(N) where N is the length of list.
 # space complexity - o(N) because we create a 2d list that is equal to N.
+                
+
+
+class Solution(object):
+    def topKFrequent(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: List[int]
+        """
+
+        frequency = {}
+
+        for number in nums:
+            if number in frequency:
+                frequency[number] += 1
+            else:
+                frequency[number] = 1
+
+        # This will not work!
+         # buckets = [[]] * (len(nums) + 1)
+        # the reason is, 
+      
+        # When you create a list using the expression buckets = [[]] * (len(nums) + 1), you're creating a list where all elements are references to the same empty list. So when you modify one sublist, it affects all other sublists because they all reference the same object.
+
+# To fix this issue, you need to create independent empty lists for each element of buckets. You can achieve this using a list comprehension or a loop to create the sublists:
+
+# python
+# Copy code
+      
+        buckets = []
+
+
+        for i in range(0, len(nums) + 1):
+            buckets.append([])
+        
+        for key in frequency:
+            
+            repetition = frequency[key]
+            buckets[repetition].append(key)
+       
+
+        result = []
+        for i in range(len(buckets) - 1, - 1, - 1):
+            bucket = buckets[i]
+
+            for number in bucket:
+                if len(result) < k:
+                    result.append(number)
+        
+        return result
+
+
+        
+
