@@ -69,15 +69,17 @@ class Solution:
     def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
         if len(lists) == 0 or len(lists) == 1:
             return None
-            
-        another_list = self.mergelist(lists[0], lists[1])
+        # This does not passes the test cass:
+        # give time limit excedded
+        # may be, this  another_list = self.mergelist(another_list, lists[i]) this takes extra time.
+        # another_list = self.mergelist(lists[0], lists[1])
+        # # print(another_list)
+        # for i in range (2, len(lists)):
+        #     # print(lists[i])
+        #     another_list = self.mergelist(another_list, lists[i])
+        #     print(55)
         # print(another_list)
-        for i in range (2, len(lists)):
-            # print(lists[i])
-            another_list = self.mergelist(another_list, lists[i])
-            print(55)
-        print(another_list)
-        return another_list
+        # return another_list
 
     def mergelist(self, firstlist, secondlist):
         temp1 = firstlist
