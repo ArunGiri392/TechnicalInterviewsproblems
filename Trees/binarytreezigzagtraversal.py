@@ -52,3 +52,56 @@ class Solution:
                 
         #     [9,20]
                 
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+
+        # Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def zigzagLevelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
+
+        # flag is used to determine when to add on stack or not.
+        if not root:
+            return
+        queue = deque()
+        flag = False
+        stack = []
+        queue.append(root)
+        result = []
+
+        while queue:
+            current_result = []
+            for i in range(0, len(queue)):
+                current_node = queue.popleft()
+                if current_node.left:
+                    queue.append((current_node.left))
+
+                    
+                if current_node.right:
+                    queue.append((current_node.right))
+
+                if flag:
+                    stack.append(current_node.val)
+            
+                if not stack:
+                    current_result.append(current_node.val)
+
+            while stack:
+                current_result.append(stack.pop())
+                
+            flag = not flag
+            result.append(current_result)
+        return result
+
+        
+        
+ 
+                
