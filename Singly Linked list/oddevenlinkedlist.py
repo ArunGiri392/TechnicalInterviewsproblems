@@ -6,44 +6,67 @@ class ListNode:
 
 class Solution:
     def oddEvenList(self, head: Optional[ListNode]) -> Optional[ListNode]:
-    
+        # first appraoch.
         if not head:
             return None
         
         if head.next == None:
             return head
-        first_even = head.next
-        current = head
-
-        # length
-        count = 0
-        while current != None:
-            count += 1
-            current = current.next
         
-        current = head
+        odd = head
+        even = head.next
+        first_head = head.next
+
+        while even and even.next:
+            odd.next = odd.next.next
+            even.next = even.next.next
+
+            odd = odd.next
+            even = even.next
+        odd.next = first_head
+        return head
+
+
+        # second approach
+
+        # if not head:
+        #     return None
+        
+        # if head.next == None:
+        #     return head
+        # first_even = head.next
+        # current = head
+
+        # # length
+        # count = 0
+        # while current != None:
+        #     count += 1
+        #     current = current.next
+        
+        # current = head
     
 
-        while current != None:
-            next_node = current.next
-            if current.next and current.next.next:
-                current.next = current.next.next
-                current = next_node
-            else:
-                break
+        # while current != None:
+        #     next_node = current.next
+        #     if current.next and current.next.next:
+        #         current.next = current.next.next
+        #         current = next_node
+        #     else:
+        #         break
 
-        if count % 2 == 0:
-            current.next = first_even
-        else:
-            current.next = None
-            next_node.next = first_even
+        # if count % 2 == 0:
+        #     current.next = first_even
+        # else:
+        #     current.next = None
+        #     next_node.next = first_even
         
-        return head
+        # return head
         # Time complexity - O(n)
         # space complexity - o(1)
         
+        
 
-
+        # third appraoch, using memory.
         # if not head:
         #     return None
         
