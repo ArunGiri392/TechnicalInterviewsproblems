@@ -6,7 +6,7 @@ class Solution:
         # if i ever encounter, close bracket, ), then first, i try to , pop from opening bracket to balance.
         # if somehow, opening bracket is empty, then i try to pop from star to make the balance.
         # if both are empty, then, i no, i am in wrong form, so return False.
-
+        
         opening_bracket = []
         star = []
 
