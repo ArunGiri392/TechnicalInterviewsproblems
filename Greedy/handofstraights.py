@@ -43,6 +43,8 @@ class Solution:
 
                 counter += 1
         return True
-
+# Time complexity --> o(N * logn) logn for heap operations and o(N) for the, traversing.
+# space complexity --> o(N)
+                
 
                 

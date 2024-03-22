@@ -33,3 +33,70 @@ def threeSum(self, nums):
         return result
     # time complexity == o(N2) BECAUSE for every element in list, we are doing two sum so o(n) * o(n)
     # space complexity = o(N) we are keeping the list of result.
+
+# without using the, hashset:
+
+class Solution:
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+
+        nums.sort()
+        result = []
+       
+       # Here are two main things to remember. 
+       # we want to have the unique answer. 
+       # so, for i, we do not want to have the same element twice meaning.
+
+        # -1 -1 -1 0 1 2
+        # for first -1,when i is there, we get answer as -1, -1 and 2 right. 
+        # so on next case, another -1 comes in, so if we keep it, we will get same, -1,-1 and 2 right.
+        # so the idea,is in first position(i), if we used -1, then on another case, we do not want to use -1,
+        # and this can be checkted with,  if nums[i] == nums[i-1], then, we do not want to consider this case.
+
+        # the other case. is
+    #     -2 0,0,0,0,0,0,2 2,2 2, 2, 2
+    # #    i l                       r
+    # lets ssay our i is -2, and l = 0 and r = 2, then first answer is: -2, 0, 2,
+    # then if we increase l and r, again l = 0 and r =2, we get same answer:  -2, 0, 2,
+    # so this redundant right?
+    # so even left and right should not be repeated.
+    # so what we do is: while left is equal to previous left, we keep on increassing left:
+    # while nums[left] == nums[left - 1] and left < right:
+    #                         left += 1 
+
+    # and we do not have to increase right pointer, because left will ultimately come in the next pointer, and again, sum is calcuated, and right gets updated accordingly.
+
+
+
+
+        for i in range(0, len(nums) - 2):
+            if i != 0 and nums[i] == nums[i-1]:
+                continue
+            else:
+                left = i + 1
+                right = len(nums) - 1
+                while left < right:
+                    if nums[i] + nums[left] + nums[right] == 0:
+                        result.append([nums[i], nums[left], nums[right]])
+                        left += 1
+                        while nums[left] == nums[left - 1] and left < right:
+                            left += 1
+                    
+                    elif nums[i] + nums[left] + nums[right] > 0: 
+                        right -= 1
+                    else:
+                        left += 1
+        return result
+
+
+    # #   0 1 1
+    # #   0 0 0
+
+    # # -2,0,0,2,2
+    #   -2 0,0,0,0,0,0,2 2,2 2, 2, 2
+    #    i             l      r
+
+
+    
+
+
+            
