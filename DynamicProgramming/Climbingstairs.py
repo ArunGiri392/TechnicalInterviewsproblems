@@ -29,3 +29,49 @@ class Solution:
         return temp2
 
     
+class Solution:
+    def climbStairs(self, n: int) -> int:
+        a = 1
+        b = 1
+
+        if n == 0:
+            return 0
+        
+        if n == 1:
+            return 1
+            
+        if n == 2:
+            return a + b
+
+
+        for i in range(0, n-1):
+            temp = b
+            b = a + b
+            a = temp
+        
+        return b
+
+#using memoization.
+class Solution:
+    def climbStairs(self, n: int) -> int:
+
+        steps = {
+
+        }
+        def dfs(step):
+            if step == n:
+                return 1
+            if step > n :
+                return 0
+            # memoization
+            if step in steps:
+                return steps[step]
+
+
+
+            steps[step] = dfs(step + 1) + dfs(step + 2)
+            return steps[step]
+            
+        
+
+        return dfs(0)
