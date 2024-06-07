@@ -16,4 +16,14 @@ class Solution:
             slow = nums[slow]
             fast = nums[fast]
         return slow
+    
+    # ANOTHER APPROACH.
+    #with modifying the original array , but still space complextiy is O(1)
+        for number in nums:
+            number = abs(number)
+            if nums[number - 1] < 0:
+                return number
+
+            nums[number - 1] = -1 * nums[number - 1]
+
             
