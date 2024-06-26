@@ -17,3 +17,6 @@ class Solution:
 
         return root
 
+   #Time complexity - o(N * logn)
+   # Space complexity - o(N)
+   #logn for breaking, and N for travelling each Node.

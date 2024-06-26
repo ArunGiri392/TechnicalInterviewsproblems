@@ -1,3 +1,7 @@
+#leetcode 239.
+#https://leetcode.com/problems/sliding-window-maximum/description/
+# Montonic increasing stack and Sliding window.
+
 from collections import deque
 class Solution:
     def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
@@ -49,6 +53,29 @@ class Solution:
         
         # [4, 5]    ---- [3,3,5,5,]
         #  0 1 2  3  4 5 6 7
-  
+
+    def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
+        queue = collections.deque()
+        result = []
+        left = 0
+        for right in range(0, len(nums)):
+
+            # if current element is greater than last element in queue.
+            while queue and nums[right] > nums[queue[-1]]:
+                queue.pop()
+            queue.append(right)
+
+            # if we increase left pointer and maximum if from the prevous left pointer, we remove that previous max from the queue.
+            if left > queue[0]:
+                queue.popleft()
+
+            # if windowsize becomes equal to K.
+            if (right - left + 1) == k:
+                result.append(nums[queue[0]])
+                left += 1
+        return result
+
+
+
 
        
