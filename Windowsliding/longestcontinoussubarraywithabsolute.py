@@ -1,6 +1,6 @@
 # leetcode 1438.
 #https://leetcode.com/problems/longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit/description/
-# Window sliding, two pointers, arrays.
+# Window sliding, two pointers, arrays, Deque, monontonic Deque.
 
 class Solution:
     def longestSubarray(self, nums: List[int], limit: int) -> int:
