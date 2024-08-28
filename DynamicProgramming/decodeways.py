@@ -37,3 +37,29 @@ class Solution:
 
         # Time complexity - o(N)
         # Space complexity - o(N)
+
+
+class Solution:
+    def numDecodings(self, s: str) -> int:
+        dp = {}
+
+        def dfs(index, string):
+            if index >= len(s) :
+                return 1
+            
+            if index in dp:
+                return dp[index]
+            
+            take_one = 0
+            if s[index] != "0" :
+                take_one = dfs(index + 1, string + s[index])
+            
+            take_two = 0
+            if s[index] != "0" and index + 2 <= len(s) and int(s[index : index + 2]) <= 26 :
+                take_two = dfs(index + 2, string + s[index : index + 2 ] )
+            
+            dp[index] = take_one + take_two
+            return dp[index]
+
+        
+        return dfs(0, "")

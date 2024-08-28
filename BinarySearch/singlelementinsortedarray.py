@@ -9,7 +9,7 @@ class Solution:
         #  0 1 2 3 4 5 6 7
          
         #  but whenever, a single elment comes in, it disrubtes this order such that, the index of the starting point of even number becomes odd.
-        #  now, we coul duse this logic,
+        #  now, we could duse this logic,
         #  when we calculate the mid, then firstly, we determine, whether that mid, is starting of even pair or ending, 
         #  this could be doing with simple logic, ie
 
