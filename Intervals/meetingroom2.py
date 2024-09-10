@@ -25,7 +25,7 @@ def min_meeting_rooms(self, intervals: List[Interval]) -> int:
             else:
                 meeting_going_on -= 1
                 j += 1
-            max_count = max(max_count, max)
+            max_count = max(max_count, meeting_going_on)
         return max_count
         
         # Time complexity - o(N)

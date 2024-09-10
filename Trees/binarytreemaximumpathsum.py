@@ -42,7 +42,8 @@ class Solution:
             left_max = dfs(root.left)
             right_max = dfs(root.right)
 
-
+            # we can get maximum from comparing
+            # our current max, root.val + max from left, root.val + max from right , max from left + max from right + root.val or only root.
             maximum_sum = max(left_max + right_max + root.val, maximum_sum, root.val, root.val + left_max, root.val + right_max)
 
             return max(left_max + root.val, right_max + root.val,  root.val)

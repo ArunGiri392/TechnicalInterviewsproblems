@@ -1,6 +1,36 @@
 class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+        # Topoligal sort:
+        # it says that there is a linering ordering such that if there is an edge from U to V, u should always come before v.
+        # for example:
+        # lets consider this graph:
+
+        # 0 1 2 3 4 5
         
+        # 5--> 0 <- 4
+        # !         !
+        # 2 -> 3->  1
+        
+        # 5 4 0 2 3 1 is one of the topolical sorting of the above graph.
+
+        # for any graph, if there is a topo sort, we can use BFS to get the topo sort.
+        # first find, the indegree of each vertex.
+
+        #  vertex =   [0 1 2 3 4 5]
+        #  indegree = [2 2 1 1 0 0 ]
+         
+        #  # put the vertex who indegree is 0 as they do not have any indegree .
+        #  queue = [  ]
+        #  topo = []
+         # pop out from the queue and decrease the indegree for its neighbour
+         # and if any of vertex indegree becomes 0, put in the stack.
+
+
+
+
+
+        
+        # real problem: 
         # firstly, convert the prerequsite as a graph relationship.
         # problem says, You are given an array prerequisites where prerequisites[i] = [ai, bi] indicates that you must take course bi first if you want to take course ai.
 

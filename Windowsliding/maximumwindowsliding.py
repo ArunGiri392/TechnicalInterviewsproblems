@@ -14,28 +14,26 @@ class Solution:
         # one thing to remember is to: 
          # while the first index in queue has the maximum, it should also be part of the current window.
          # so the maximum index is smaller than left poiner, because left pointer is the left most side of our window, and it maximum index is less than it, it means the maximum is not withinwinow, so pop it from frontside.
-
+        queue = collections.deque()
         result = []
-        q = collections.deque()
-        left, right = 0, 0
+        left = 0
+        for right in range(0, len(nums)):
 
-        while right < len(nums):
-            # if the maximum is out of our , current window.
-            if q and left > q[0]:
-                q.popleft()
-            #maitaining monotonic decreasing queue.
-            while q and nums[right] > nums[q[-1]]:
-                q.pop()
-            q.append(right)
+            # if current element is greater than last element in queue.
+            while queue and nums[right] > nums[queue[-1]]:
+                queue.pop()
+            queue.append(right)
 
-            # if left > q[0]:
-            #     q.popleft()
-            # window size if k, then take the  first element from queue, and add it.
+            # if we increase left pointer and maximum if from the prevous left pointer, we remove that previous max from the queue.
+            if left > queue[0]:
+                queue.popleft()
+
+            # if windowsize becomes equal to K.
             if (right - left + 1) == k:
-                result.append(nums[q[0]])
+                result.append(nums[queue[0]])
                 left += 1
-            right += 1
         return result
+
 
             
 

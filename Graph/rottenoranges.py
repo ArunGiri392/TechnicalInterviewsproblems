@@ -20,43 +20,38 @@
 
 class Solution:
     def orangesRotting(self, grid: List[List[int]]) -> int:
-
-
         ROWS = len(grid)
         COLS = len(grid[0])
-        Time = 0
-        queue = deque()
         fresh = 0
+        time = 0
+        queue = deque()
+        
 
         for row in range(0, ROWS):
             for col in range(0, COLS):
-                if grid[row][col] == 2:
-                    queue.append((row, col))
-                elif grid[row][col] == 1:
+                if grid[row][col] == 1:
                     fresh += 1
-
-        if fresh == 0:
-            return 0
-
-
-
-        while fresh > 0 and queue:
-            for i in range( 0, len(queue)):
-                r, c = queue.popleft()
-                neighbours = [(r - 1, c), (r + 1, c), (r, c + 1), (r, c- 1)]
-                for neighbour in neighbours:
-                    nr, nc = neighbour
-                    if nr >= 0  and nc >= 0 and nr < ROWS and nc < COLS and grid[nr][nc] != 0 and grid[nr][nc] != 2:
-                        queue.append((nr, nc))
-                        grid[nr][nc] = 2
-                        fresh -= 1
-            Time += 1
-
-          
+                elif grid[row][col] == 2:
+                    queue.append((row, col))
         
-        if fresh == 0:
-            return Time
-        return -1
+        while queue and fresh > 0 :
+            for i in range(0, len(queue)):
+                (r, c) = queue.popleft()
+
+
+                neighbours = [(r + 1, c), (r - 1, c), (r, c + 1), (r, c - 1)]
+                for neighbour in neighbours:
+                    (nr, nc) = neighbour
+                    if nr < 0 or nc < 0 or nr == ROWS or nc == COLS or grid[nr][nc] == 0 or grid[nr][nc] == 2:
+                        continue
+                    queue.append((nr, nc))
+                    grid[nr][nc] = 2
+                    fresh -= 1
+            time += 1
+        
+        if fresh > 0:
+            return -1
+        return time 
 
         
         

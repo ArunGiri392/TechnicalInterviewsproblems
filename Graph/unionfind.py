@@ -5,7 +5,7 @@
 class UnionFind:
     def __init__(self, n):
         # intially, all nodes are parent of themselves.
-        self.parent = []
+        self.parent = {}
         self.rank = []
         # initally, all nodes have a rank of 0.
 
@@ -20,8 +20,9 @@ class UnionFind:
         while parent != self.parent[parent]:
             # doing path compression. 
             # it is updating the parent of given vertex to point to the grandparent.
-            parent = self.parent[self.parent[parent]]
+            self.parent[parent] = self.parent[self.parent[parent]]
             parent = self.parent[parent]
+        return parent
         
     def union(self, n1, n2):
         # n1 and n2 are two nodes and we do union on these.

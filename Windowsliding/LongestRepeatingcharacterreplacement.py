@@ -61,3 +61,26 @@ class Solution(object):
 # space comlexity - 0(26)
 
 
+# same solution, but shorter:
+class Solution:
+    def characterReplacement(self, s: str, k: int) -> int:
+        container = {}
+        left = 0
+        length = 0
+        max_length = 0
+        for right in range(0, len(s)):
+            if s[right] in container: 
+                container[s[right]] += 1
+            else:
+                container[s[right]] = 1
+            
+          
+            # invalid condition
+            while sum(list(container.values())) - max(list(container.values())) > k : 
+                container[s[left]] -= 1
+                left += 1
+            length = right - left + 1
+            max_length = max(max_length, length)
+        return max_length
+
+

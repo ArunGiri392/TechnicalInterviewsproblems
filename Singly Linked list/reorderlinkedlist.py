@@ -100,8 +100,48 @@ class Solution(object):
 # Timecomplexity - o(N) because we are traversing the list
 # space complexity - o(1) No auxillary data structure is being used here.
 
+#without using dummy node: 
+class Solution:
+    def reorderList(self, head: Optional[ListNode]) -> None:
 
+        slow = head
+        fast = head
+       
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+ 
+        list2 = slow.next
+        slow.next = None
+
+        list3 = self.reverse(list2)
+        cur1 = head
+        cur2 = list3
+
+        while cur1 and cur2:
+            temp1 = cur1.next
+            temp2 = cur2.next
+            
+            cur1.next = cur2
+            cur2.next = temp1
+
+            cur1 = temp1
+            cur2 = temp2
+    
+        return head
+    
+    def reverse(self, head):
+        current_node  = head
+        previous_node = None
+        while current_node:
+            temp = current_node.next
+            current_node.next = previous_node
+            previous_node = current_node
+            current_node = temp
+        return previous_node
 # Definition for singly-linked list.
+
+
 class ListNode:
     def __init__(self, val=0, next=None):
         self.val = val

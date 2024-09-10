@@ -42,7 +42,7 @@ class Solution(object):
                     # create a copy of that node.
                     neighbour_copy = Node(neighbour.val)
                     # add its real node and copy in hashmap
-                    map[neighbour] = neighbour_copy\
+                    map[neighbour] = neighbour_copy
                     # add to the queue.
                     queue.append(neighbour)
                 # Here if neighbour is map or not, this code executes, because we want to make that connection(edge) with another node.
